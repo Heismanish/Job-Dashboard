@@ -4,14 +4,12 @@ import { Job } from "@/types/job";
 import ApplyForm from "@/components/ApplyForm";
 import { jobs } from "@/lib/jobData";
 
-type JobDetailPageProps = {
-  params: {
-    id: string;
-  };
-};
+type Params = Promise<{ id: string }>;
 
-export default function JobDetailPage({ params }: JobDetailPageProps) {
-  const job = (jobs as Job[]).find((job) => job.id === params.id);
+export default async function JobDetailPage({ params }: { params: Params }) {
+  const { id } = await params;
+
+  const job = (jobs as Job[]).find((job) => job.id === id);
 
   if (!job) return notFound();
 
