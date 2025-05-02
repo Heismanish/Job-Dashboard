@@ -4,10 +4,12 @@ import { Job } from "@/types/job";
 import ApplyForm from "@/components/ApplyForm";
 import { jobs } from "@/lib/jobData";
 
-interface JobDetailPageProps  {
-  params: Promise<{ id: string }>
+type JobDetailPageProps = {
+  params: {
+    id: string;
+  };
 };
-//{id: string;};
+
 export default function JobDetailPage({ params }: JobDetailPageProps) {
   const job = (jobs as Job[]).find((job) => job.id === params.id);
 
@@ -64,7 +66,7 @@ export default function JobDetailPage({ params }: JobDetailPageProps) {
         <h2 className="text-xl font-bold text-[#4640DE] mb-4">
           Apply for this job
         </h2>
-        <ApplyForm jobId={job.id} /> 
+        <ApplyForm jobId={job.id} />
       </div>
     </div>
   );
